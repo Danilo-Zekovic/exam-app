@@ -38,7 +38,7 @@ match_form = function( jqueryMap, visited ) {
       $('.row:last').append('<div class="col-xs-12 col-md-6"></div>');
       $('.col-md-6:last').append(
         '<div class="form-group">'
-          + '<label for="sel1">Select your answear:</label>'
+          + '<label for="sel1">Select your answer:</label>'
 	  + '<select class="form-control match-ans" id="sel1">'
 	    + '<option></option>'
 	  + '</select>'

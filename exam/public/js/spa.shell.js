@@ -55,7 +55,8 @@
       home  : false,
       match : false,
       page2 : false,
-      page3 : false
+      page3 : false,
+      page4 : false
     },
     onTapList, hideDiv,
     setJqueryMap, initModule;
@@ -88,7 +89,8 @@
       $match         : $container.find('.match'),
       $fillin        : $container.find('.short-ans'),
       $multiC        : $container.find('.multiple-choice'),
-      $tf            : $container.find('.true-false')
+      $tf            : $container.find('.true-false'),
+      $nav           : $container.find('.nav-navbar')
     }
   };  // end setJqueryMap
 
@@ -124,6 +126,13 @@
     visited.page3 = true;
   }
 
+  pageFour = function ( event ) {
+    console.log("Page4 clicked " + visited.page4);
+    console.log(document.location.hash);
+    hideDiv();
+    visited.page4 = true;
+  }
+
   onTapList = function ( event ) {
     // React to taps on menu in nav div
     var menu_item  = $(this).data("id");
@@ -137,9 +146,18 @@
       case 'page1': 
 	console.log("page1");
 	break;
+      case 'page2':
+	console.log("page2");
+	break;
+      case 'page3':
+	console.log("page3");
+	break;
+      case 'page4':
+	console.log("page4");
+	break;
     }
-        return false;
-  };
+    return false;
+  }; // end onTapList
   //------------------END EVENT HANDLERS------------------
   
   //------------------BEGIN PUBLIC METHODS----------------
@@ -149,10 +167,15 @@
     $container.html( configMap.main_html );
     setJqueryMap();
     
-    jqueryMap.$menu.bind( 'click', onTapList   ); 
+    jqueryMap.$nav.bind( 'click', onTapList   ); 
     jqueryMap.$mbt.click(pageOne);
     jqueryMap.$p2bt.click(pageTwo);
     jqueryMap.$p3bt.click(pageThree);
+    jqueryMap.$p4bt.click(pageFour);
+
+
+    // trying to make routing work
+    //jqueryMap.$menu.bind( 'click', onTapList );
   };
   
 
