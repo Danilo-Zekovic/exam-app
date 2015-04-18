@@ -98,39 +98,52 @@
   
   //------------------BEGIN EVENT HANDLERS----------------
   
-  // switch to page1
+  // switch to page1, match
   pageOne = function( event ) {
     console.log("Match clicked");
     console.log(document.location.hash);
    
-    hideDiv();
-
+    hideDiv(); // hide curent content of the main div
+    
+    // add requested page content
     jqueryMap.$main.append(match_form( jqueryMap, visited.match ));
 
     visited.match = true; // when page visited change it to true
   }
 
+  // switch to page2, fillin
   pageTwo = function ( event ) {
     console.log("Page2 clicked " + visited.page2);
     console.log(document.location.hash);
     
-    hideDiv();
+    hideDiv(); // hide curent content of the main div
+    
+    // add requested page content to the main div
+    jqueryMap.$main.append(fillin_form( jqueryMap, visited.page2 ));
 
-    visited.page2 = true;
+    visited.page2 = true; // page visited
   }
 
   pageThree = function ( event ) {
     console.log("Page3 clicked " + visited.page3);
     console.log(document.location.hash);
-    hideDiv();   // hide any div thet is showing in $main
-    visited.page3 = true;
+    hideDiv();   // hide curent content of the main div
+
+    // add requested page content to the main div TODO
+    //jqueryMap.$main.append(mult_choice_form( jqueryMap, visited.page3 ));
+
+    visited.page3 = true; // page visited
   }
 
   pageFour = function ( event ) {
     console.log("Page4 clicked " + visited.page4);
     console.log(document.location.hash);
-    hideDiv();
-    visited.page4 = true;
+    hideDiv();  // hide curent content of the main div
+
+    // add requested page content to the main div
+    // jqueryMap.$main.append(tf_form( jqueryMap, visited.page4 ));
+
+    visited.page4 = true; // page visited
   }
 
   onTapList = function ( event ) {
