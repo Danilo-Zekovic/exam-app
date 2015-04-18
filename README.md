@@ -2,7 +2,7 @@
 Developing parts that will be part of the final project that will generate exams.
 
 
-How to run the app:
+How to run the app:    
 1. In the directory 'exam' run npm install  
 2. After that just run npm start, inside of 'exam' directory  
 3. Open the browser, and it will be on lockalhost:3000  
