@@ -60,7 +60,7 @@ fillin_form = function( jqueryMap, visited ) {
 			 + '</div>'
 		       + '</div>';
     jqueryMap.$fillin.append(buttonString);
-    console.log(solutions.toString());
+    console.log(solutionsF.toString());
     $('.submit-btn-fillin').click({solutionsF:solutionsF},gradeFillin);
   } // end if else
 } // end match_form
