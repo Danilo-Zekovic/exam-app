@@ -11,7 +11,7 @@ fillin_form = function( jqueryMap, visited ) {
   
 
   // array to keep the corect answers
-  var solutions = [];
+  var solutionsF = [];
 
 
   // if the page was visited just show it again
@@ -34,7 +34,7 @@ fillin_form = function( jqueryMap, visited ) {
 
       // set multivalue answers in array (2D array)
       for (var j = 0; j < data[i].length; ++j) {
-        solutions[i] = data[i][j].value;
+        solutionsF[i] = data[i][j].value;
       }
 
       $("label:last").html( question );
@@ -44,7 +44,8 @@ fillin_form = function( jqueryMap, visited ) {
       $('.col-md-6:last').append(
         '<div class="form-group">'
           + '<label for="answer">Type your answear:</label>'
-          + '<input type="text" class="form-control" id="answer">'
+	  // fillin-ans class so that answers could be selected
+          + '<input type="text" class="form-control fillin-ans" id="answer">'
         + '</div>'
       );
       
@@ -55,12 +56,12 @@ fillin_form = function( jqueryMap, visited ) {
     // and display the number of corect and missed questions
     var buttonString = '<div class="row">'
 	                 + '<div class="col-xs-12 submit">'
-			   + '<button type="button" class="btn btn-primary btn-block submit-btn">Submit</button>'
+			   + '<button type="button" class="btn btn-primary btn-block submit-btn-fillin">Submit</button>'
 			 + '</div>'
 		       + '</div>';
     jqueryMap.$fillin.append(buttonString);
     console.log(solutions.toString());
-    $('.submit-btn').click({solutions:solutions},grade);
+    $('.submit-btn-fillin').click({solutionsF:solutionsF},gradeFillin);
   } // end if else
 } // end match_form
 
@@ -70,14 +71,14 @@ var checkScore = function(){
   
 }
 
-var grade = function( event ) {
-  var solutions = event.data.solutions;
-  console.log("Submit Clicked " + solutions.toString());
+var gradeFillin = function( event ) {
+  var solutionsF = event.data.solutionsF;
+  console.log("Submit Clicked " + solutionsF.toString());
 
   var ans = []; // array to store user answers
   var i = 0;    // to keep the place to store the value in ans array
   // move through all the input lists and get the selected value
-  $('.match-ans').each(function() {
+  $('.fillin-ans').each(function() {
     ans[i] = $(this).val();
     console.log($(this).val());
     i++;
@@ -88,15 +89,15 @@ var grade = function( event ) {
 
   // check are the answers correct
   // unanswered questions will be considered wrong
-  for (var j = 0; j < solutions.length; ++j){
+  for (var j = 0; j < solutionsF.length; ++j){
     // test for all possible solutions in second dimension
-    for (var k = 0; j < solutions[j].length; ++k) {
+    for (var k = 0; j < solutionsF[j].length; ++k) {
       // found answer
-      if (ans[j] == solutions[j][k]){
+      if (ans[j] == solutionsF[j][k]){
         correct++;
       } 
       // if the answer is not last possible solution
-      else if (k == solutions[j].length - 1 && ans[j] != solutions[j][solutions[j].length - 1]) {
+      else if (k == solutionsF[j].length - 1 && ans[j] != solutionsF[j][solutionsF[j].length - 1]) {
         wrong++;
       } else {
         continue;
@@ -105,8 +106,8 @@ var grade = function( event ) {
   } // for j
 
   console.log("correct answers: " + correct + " wrong ans: " + wrong);
-  $('.match').empty();
-  $('.match').append(
+  $('.fillin').empty();
+  $('.fillin').append(
      '<div class="row">'
       + '<div class="col-xs-12">'
         + '<label></label>'
