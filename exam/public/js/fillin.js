@@ -17,13 +17,13 @@ fillin_form = function( jqueryMap, visited ) {
   // if the page was visited just show it again
   // else create the content of the page
   if (visited){
-    jqueryMap.$match.show();
+    jqueryMap.$fillin.show();
   }else{
-    jqueryMap.$match.show();
+    jqueryMap.$fillin.show();
     // display all the statments(questions) as paragraph from the data 
     for (var i = 0; i < data.length; ++i){
       // created the row to place the bootstrap collumns into it
-      jqueryMap.$match.append('<div class="row"></div>');
+      jqueryMap.$fillin.append('<div class="row"></div>');
     
       // bootstrap collumns
       // xs for phone size will have one collumn
@@ -58,7 +58,7 @@ fillin_form = function( jqueryMap, visited ) {
 			   + '<button type="button" class="btn btn-primary btn-block submit-btn">Submit</button>'
 			 + '</div>'
 		       + '</div>';
-    jqueryMap.$match.append(buttonString);
+    jqueryMap.$fillin.append(buttonString);
     console.log(solutions.toString());
     $('.submit-btn').click({solutions:solutions},grade);
   } // end if else
