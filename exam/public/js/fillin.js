@@ -11,7 +11,7 @@ fillin_form = function( jqueryMap, visited ) {
   
 
   // array to keep the corect answers
-  var solutionsF = [];
+  var solutions = [];
 
 
   // if the page was visited just show it again
@@ -31,10 +31,15 @@ fillin_form = function( jqueryMap, visited ) {
       $('.row:last').append('<div class="col-xs-12 col-md-6"></div>');  // append it to row div
       $('.col-md-6:last').append('<label></label>'); //append it to collumn
       var question = data[i].text;
+      //solutions[i] = data[i].values;
 
+      solutions[i] = [];
       // set multivalue answers in array (2D array)
-      for (var j = 0; j < data[i].length; ++j) {
-        solutionsF[i] = data[i][j].value;
+      for (var j = 0; j < data[i].values.length; ++j) {
+        console.log(data[i].values.length);
+        console.log("data[i].values[j] = " + data[i].values[j]);
+        solutions[i][j] = data[i].values[j];
+        console.log("solutions[i] = " + solutions[i][j]);
       }
 
       $("label:last").html( question );
@@ -60,20 +65,16 @@ fillin_form = function( jqueryMap, visited ) {
 			 + '</div>'
 		       + '</div>';
     jqueryMap.$fillin.append(buttonString);
-    console.log(solutionsF.toString());
-    $('.submit-btn-fillin').click({solutionsF:solutionsF},gradeFillin);
+    console.log(solutions.toString());
+    console.log(solutions[4][1] + " should be Alan Shepherd");
+    $('.submit-btn-fillin').click({solutions:solutions},gradeFillin);
   } // end if else
 } // end match_form
 
 
-
-var checkScore = function(){
-  
-}
-
 var gradeFillin = function( event ) {
-  var solutionsF = event.data.solutionsF;
-  console.log("Submit Clicked " + solutionsF.toString());
+  var solutions = event.data.solutions;
+  console.log("Submit Clicked " + solutions.toString());
 
   var ans = []; // array to store user answers
   var i = 0;    // to keep the place to store the value in ans array
@@ -86,23 +87,30 @@ var gradeFillin = function( event ) {
 
   var wrong = 0;
   var correct = 0;
+  var prev_correct = 0;
 
   // check are the answers correct
   // unanswered questions will be considered wrong
-  for (var j = 0; j < solutionsF.length; ++j){
+  for (var j = 0; j < solutions.length; ++j){
     // test for all possible solutions in second dimension
-    for (var k = 0; j < solutionsF[j].length; ++k) {
+    for (var k = 0; k < solutions[j].length; ++k) {
+      console.log(solutions[j][k]);
       // found answer
-      if (ans[j] == solutionsF[j][k]){
+      if (ans[j] == solutions[j][k]){
+        prev_correct = correct;
         correct++;
       } 
-      // if the answer is not last possible solution
-      else if (k == solutionsF[j].length - 1 && ans[j] != solutionsF[j][solutionsF[j].length - 1]) {
+      // if the answer is not last possible solution and a correct answer wasn't already found
+      else if (k == solutions[j].length - 1 && ans[j] != solutions[j][k] && prev_correct == correct) {
+        console.log(k + "   " +solutions[j].length);
+        console.log("hey dude look here -> " + ans[j] + " =? " + solutions[j][k]);
         wrong++;
       } else {
         continue;
       }
     } // for k
+    // set the prev_correct to be the same as correct before checking next question
+    prev_correct = correct;
   } // for j
 
   console.log("correct answers: " + correct + " wrong ans: " + wrong);
