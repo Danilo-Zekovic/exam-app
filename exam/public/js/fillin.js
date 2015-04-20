@@ -118,11 +118,11 @@ var gradeFillin = function( event ) {
   $('.fillin').append(
      '<div class="row">'
       + '<div class="col-xs-12">'
-        + '<label></label>'
+        + '<label class="fillin-grade"></label>'
       + '</div>'
     + '</div>'
   );
   var str = 'Correct: ' + correct + ', wrong: ' + wrong;
   console.log(str);
-  $('label:first').html(str);
+  $('.fillin-grade').html(str);
 }  // end grade
