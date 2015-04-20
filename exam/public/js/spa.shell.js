@@ -43,7 +43,7 @@
 	+ '</nav>'
 	+ '<div class="container main-container">'
 	  + '<div class="container match"></div>'
-	  + '<div class="container short-ans"></div>'
+	  + '<div class="container fillin"></div>'
 	  + '<div class="container multiple-choice"></div>'
 	  + '<div class="container true-false"></div>'
 	+ '</div>'
@@ -87,7 +87,7 @@
       $p4bt          : $container.find('.page4'),
       $main          : $container.find('.main-container'),
       $match         : $container.find('.match'),
-      $fillin        : $container.find('.short-ans'),
+      $fillin        : $container.find('.fillin'),
       $multiC        : $container.find('.multiple-choice'),
       $tf            : $container.find('.true-false'),
       $nav           : $container.find('.nav-navbar')
