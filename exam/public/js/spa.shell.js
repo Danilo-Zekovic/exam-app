@@ -179,6 +179,16 @@
     stateMap.$container = $container;
     $container.html( configMap.main_html );
     setJqueryMap();
+
+
+    jqueryMap.$main.append(match_form( jqueryMap, visited.match ));
+    jqueryMap.$main.append(fillin_form( jqueryMap, visited.page2 ));
+    //jqueryMap.$main.append(fillin_form( jqueryMap, visited.page3 ));
+    //jqueryMap.$main.append(fillin_form( jqueryMap, visited.page4 ));
+    visited.match = true;
+    visited.page2 = true;
+
+    hideDiv();
     
     jqueryMap.$nav.bind( 'click', onTapList   ); 
     jqueryMap.$mbt.click(pageOne);
