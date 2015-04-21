@@ -3,10 +3,14 @@
  * Your CSS
  */
 
-.container {
+.container:not(#top-navbar) {
   position : relative;  
   background-color : orange;
 }
+
+/*#top-navbar {
+  background-color: transparent;
+}*/
 
 .submit {
   padding : 1em;
@@ -17,12 +21,16 @@ li:hover {
 }
 
 @media (max-width:768px) {
-  .container {
+  .container:not(#top-navbar) {
     position : absolute;
     left : 0;
     right : 0;
     background-color : blue;
   }
+
+  /*#top-navbar {
+    background-color: transparent;
+  }*/
 
   #spa {
     position : static;
