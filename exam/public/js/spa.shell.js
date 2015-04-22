@@ -36,7 +36,7 @@
 	        + '<li class="matchbtn" ><a href="#/match">Match</a></li>'
 	        + '<li><a class="page2" href="#/page2">Nathan</a></li>'
 	        + '<li><a class="page3" href="#/page3">Craig</a></li>'
-		+ '<li><a class="page4" href="#/page4">Ryan</a></li>'
+		      + '<li><a class="page4" href="#/page4">Ryan</a></li>'
 	      + '</ul>'
 	    + '</div>'
 	  + '</div>'
@@ -67,8 +67,8 @@
   // hide any div in $main
   hideDiv = function () {
     jqueryMap.$match.hide();
-    jqueryMap.$multiC.hide();
     jqueryMap.$fillin.hide();
+    jqueryMap.$multChoice.hide();
     jqueryMap.$tf.hide();
   }
 
@@ -88,7 +88,7 @@
       $main          : $container.find('.main-container'),
       $match         : $container.find('.match'),
       $fillin        : $container.find('.fillin'),
-      $multiC        : $container.find('.multiple-choice'),
+      $multChoice    : $container.find('.multiple-choice'),
       $tf            : $container.find('.true-false'),
       $nav           : $container.find('.nav-navbar')
     }
@@ -130,7 +130,7 @@
     hideDiv();   // hide curent content of the main div
 
     // add requested page content to the main div TODO
-    //jqueryMap.$main.append(mult_choice_form( jqueryMap, visited.page3 ));
+    jqueryMap.$main.append(mult_choice_form( jqueryMap, visited.page3 ));
 
     visited.page3 = true; // page visited
   }
@@ -155,19 +155,19 @@
 
       case 'match':
         console.log("match clicked");
-	break;
+	      break;
       case 'page1': 
-	console.log("page1");
-	break;
+	      console.log("page1");
+	      break;
       case 'page2':
-	console.log("page2");
-	break;
+	      console.log("page2");
+	       break;
       case 'page3':
-	console.log("page3");
-	break;
+	      console.log("page3");
+	      break;
       case 'page4':
-	console.log("page4");
-	break;
+	      console.log("page4");
+	      break;
     }
     return false;
   }; // end onTapList
@@ -180,13 +180,13 @@
     $container.html( configMap.main_html );
     setJqueryMap();
 
-
     jqueryMap.$main.append(match_form( jqueryMap, visited.match ));
     jqueryMap.$main.append(fillin_form( jqueryMap, visited.page2 ));
-    //jqueryMap.$main.append(fillin_form( jqueryMap, visited.page3 ));
+    jqueryMap.$main.append(mult_choice_form( jqueryMap, visited.page3 ));
     //jqueryMap.$main.append(fillin_form( jqueryMap, visited.page4 ));
     visited.match = true;
     visited.page2 = true;
+    visited.page3 = true;
 
     hideDiv();
     
