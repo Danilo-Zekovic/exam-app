@@ -5,8 +5,8 @@ Developing parts that will be part of the final project that will generate exams
 How to run the app:    
 1. In the directory 'exam' run npm install  
 2. After that just run npm start, inside of 'exam' directory  
-3. Open the browser, and it will be on lockalhost:3000  
-4. If ran on the server replace lockalhost with ip address  
+3. Open the browser, and it will be on localhost:3000  
+4. If ran on the server replace localhost with ip address  
 
 What does app use:  
 1. JavaScript  
