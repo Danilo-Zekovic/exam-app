@@ -109,18 +109,22 @@ var wrong = 0;
     }
 }
 console.log('You got ' + correct + ' correct and ' + wrong + ' wrong');
-});
-    
-     
+
+    $('.row').empty();
+  $('.row').append(
+     '<div class="row">'
+      + '<div class="col-xs-12">'
+        + '<label class="choice"></label>'
+      + '</div>'
+    + '</div>'
+  );
+  var str = 'Correct: ' + correct + ', wrong: ' + wrong;
+  console.log(str);
+  $('.choice:last').html(str);
+    }); 
   // end if else
 } // end match_form
 }
 
 
 
-
-var gradeChoice = function( event ) {
-  //var answers = event.data.answers;
-  //console.log("Submit Clicked " + solutions.toString());
-
-}  // end grade
