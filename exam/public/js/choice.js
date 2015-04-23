@@ -32,7 +32,7 @@ multchoice_form = function( jqueryMap, visited ) {
  //////////////////////////////questions displayed//////////////////////////////
  //////////////////////////////////////////////////////////////////////////////
 for (var i = 0;i < numOfQuestions; i++) {
-
+//jqueryMap.$multchoice.append('<div class="craig"></div>');
   var qtion = data[i];
   var question = qtion.text;
   var answer = qtion.answer;
