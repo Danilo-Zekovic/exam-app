@@ -27,7 +27,7 @@ multchoice_form = function( jqueryMap, visited ) {
   }else{
     jqueryMap.$multchoice.show();
 
- jqueryMap.$multchoice.append('<div class="craig"></div>'); // had to move this outside of for loop to work, not sure why yet, I will look into it more
+ jqueryMap.$multchoice.append('<div class="row"></div>'); // had to move this outside of for loop to work, not sure why yet, I will look into it more
  //jqueryMap.$choice.append('<div class="num " id="work"></div>');
  //////////////////////////////questions displayed//////////////////////////////
  //////////////////////////////////////////////////////////////////////////////
@@ -39,8 +39,9 @@ for (var i = 0;i < numOfQuestions; i++) {
      console.log(JSON.stringify(question)); 
     
 
-     $('.craig').append('<br><br><div class="cmp"></div>'); 
-     $('.cmp:last').html(nums + ') ' + question);
+     $('.row:last').append('<br><br><div class="col-xs-12 col-md-10"></div>'); 
+     $('.col-md-10:last').append('<label class="label"></label>'); //append it to collumn
+     $('.label:last').html(nums + ') ' + question);
      
      //console.log('\n the answer is ' + JSON.stringify(ques.answer) + '\n'); 
 
@@ -53,37 +54,38 @@ for (var i = 0;i < numOfQuestions; i++) {
    for (var j = 0;j < 4; j++) {
    	
    	var choices = qtion.decoys[j];
-   	// added this so that I could add a form tag at the beginning
+   	$('.row:last').append('<div class="col-xs-12 col-md-10"></div>');
+      $('.col-md-10:last').append('<input type="radio" aria-label="..." class="rad" id="' +count +'" name="num'+i+'" value="'+choices+'"><label class="lab"></label><br>');
+       $('.lab:last').html(choices);
    
-    	 $('.craig').append(
-        '<input type="radio" aria-label="..." class="rad" choicenum="Sec' + i +'" name="num'+i+'"><label id="' +count +'"class="lab"></label><br>');
-
-        $('.lab:last').html(choices);
-        console.log('    ' + JSON.stringify(qtion.decoys[j]));
-    
         count++;
-   //$('form > input').each(function(){
-    //$(this).next('label').andSelf().wrapAll('<div class="test"/>');
-   //});
-
+    
    }
  
 } // ends first for loop
 /////////////////////button displayed///////////////////////
+  //console.log('selected: ' + )
+  /*$('.rad').on('change', function() {
+    alert($("input[name='num0']:checked", '.rad').());
+  });
+*/
+}
 
+}
+  /*
 var buttonString = '<div class="row">'
 	                 + '<div class="col-xs-12 submit">'
 			   + '<button type="button" class="btn btn-primary btn-block submit-btn-fillin">Submit</button>'
 			 + '</div>'
 		       + '</div>';
     jqueryMap.$multchoice.append(buttonString);
-    //console.log(solutions.toString());
-    //console.log(solutions[4][1] + " should be Alan Shepherd");
-    //$('.submit-btn-choice').click({solutions:solutions},gradeChoice);
+    console.log(solutions.toString());
+    
+    $('.submit-btn-choice').click({solutions:solutions},gradeChoice);
 
   } // end if else
 } // end match_form
-
+*/
 
 
 
