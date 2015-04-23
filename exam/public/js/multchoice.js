@@ -41,9 +41,9 @@ mult_choice_form = function( jqueryMap, visited ) {
 
       // put answer and decoys in same array
       choices[i][0] = data[i].answer;
-      console.log("This should be an answer: " + choices[i][0]);
+      //console.log("This should be an answer: " + choices[i][0]);
       for (var j = 0; j < data[i].decoys.length; ++j) {
-        console.log("About to put this value in choices: " + data[i].decoys[j]);
+        //console.log("About to put this value in choices: " + data[i].decoys[j]);
         choices[i][j+1] = data[i].decoys[j];
       }
       //console.log("LOOK HERE=====>> " + choices.toString());
@@ -96,20 +96,26 @@ mult_choice_form = function( jqueryMap, visited ) {
       $('.row:last').append('<div class="col-xs-12 col-md-6"></div>');
       $('.col-md-6:last').append(
         // Bootstrap checkboxes
-        '<div class="checkbox">'
-          + '<label><input type="checkbox" value="">'+choices[i][0]+'</label>'
+        '<div class="radio">'
+          + '<label><input class="multChoice-ans" id="c1" type="radio" name="optradio" value="">'+choices[i][0]+'</label>'
         + '</div>'
-        + '<div class="checkbox">'
-          + '<label><input type="checkbox" value="">'+choices[i][1]+'</label>'
+        + '<div class="radio">'
+          + '<label><input class="multChoice-ans" id="c2" type="radio" name="optradio" value="">'+choices[i][1]+'</label>'
         + '</div>'
-        + '<div class="checkbox">'
-          + '<label><input type="checkbox" value="">'+choices[i][2]+'</label>'
+        + '<div class="radio">'
+          + '<label><input class="multChoice-ans" id="c3" type="radio" name="optradio" value="">'+choices[i][2]+'</label>'
         + '</div>'
-        + '<div class="checkbox">'
-          + '<label><input type="checkbox" value="">'+choices[i][3]+'</label>'
+        + '<div class="radio">'
+          + '<label><input class="multChoice-ans" id="c4" type="radio" name="optradio" value="">'+choices[i][3]+'</label>'
         + '</div>'
       );
       
+      $('#c1').val(choices[i][0]);
+      $('#c2').val(choices[i][1]);
+      $('#c3').val(choices[i][2]);
+      $('#c4').val(choices[i][3]);
+      console.log("checking value in first slot " + $('#c1').val());
+
     } // end for
 
 
@@ -135,40 +141,55 @@ var gradeMultChoice = function( event ) {
 
   var ans = []; // array to store user answers
   var i = 0;    // to keep the place to store the value in ans array
+
   // move through all the input lists and get the selected value
   $('.multChoice-ans').each(function() {
-    ans[i] = $(this).val();
-    console.log($(this).val());
-    i++;
+    console.log("Hey I am actually in this function!!!");
+
+    // test all four options for checked (code needs to be optimized)
+    if ($(this).is(':checked') && $(this).attr('id') == 'c1') {
+      console.log("testing if if checked works + " + $(this).attr('id'));
+      ans[i] = $('#c1').val();
+      i++;
+    }
+    else if ($(this).is(':checked') && $(this).attr('id') == 'c2') {
+      console.log("testing if if checked works + " + $(this).attr('id'));
+      ans[i] = $('#c2').val();
+      i++;
+    }
+    else if ($(this).is(':checked') && $(this).attr('id') == 'c3') {
+      console.log("testing if if checked works + " + $(this).attr('id'));
+      ans[i] = $('#c3').val();
+      i++;
+    }
+    else if ($(this).is(':checked') && $(this).attr('id') == 'c4') {
+      console.log("testing if if checked works + " + $(this).attr('id'));
+      ans[i] = $('#c4').val();
+      i++;
+    }
+    else {
+      i++;
+    }
+
+      //ans[i] = $(this).val();
+      //console.log($('#c1').val() + " <===");
+  
   });
 
   var wrong = 0;
   var correct = 0;
-  var prev_correct = 0;
 
   // check are the answers correct
   // unanswered questions will be considered wrong
   for (var j = 0; j < solutions.length; ++j){
-    // test for all possible solutions in second dimension
-    for (var k = 0; k < solutions[j].length; ++k) {
-      //console.log(solutions[j][k]);
-      // found answer
-      if (ans[j] == solutions[j][k]){
-        prev_correct = correct;
-        correct++;
-      } 
-      // if the answer is not last possible solution and a correct answer wasn't already found
-      else if (k == solutions[j].length - 1 && ans[j] != solutions[j][k] && prev_correct == correct) {
-        //console.log(k + "   " +solutions[j].length);
-        //console.log("hey dude look here -> " + ans[j] + " =? " + solutions[j][k]);
-        wrong++;
-      } else {
-        continue;
-      }
-    } // for k
-    // set the prev_correct to be the same as correct before checking next question
-    prev_correct = correct;
-  } // for j
+    if (ans[j] == solutions[j]){
+      correct++;
+    }else{
+      wrong++;
+    }
+  }
+
+  console.log("Answers you selected are: " + ans.toString());
 
   console.log("correct answers: " + correct + " wrong ans: " + wrong);
   $('.multChoice').empty();
