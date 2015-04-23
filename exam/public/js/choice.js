@@ -92,6 +92,9 @@ var buttonString = '<div class="row">'
 			   + '<button type="button" class="btn btn-primary btn-block submit-btn-choice">Submit</button>'
 			 + '</div>'
 		       + '</div>';
+
+var correct = 0;
+var wrong = 0;
     jqueryMap.$multchoice.append(buttonString);
     console.log(answers.toString());
     
@@ -99,13 +102,15 @@ var buttonString = '<div class="row">'
       
           for( var i =0; i < numOfQuestions; i++) {
     if(userAns[i] === answers[i]) {
-      console.log('Correct');
+      correct++;
     }
     else {
-      console.log('Wrong');
+      wrong++;
     }
 }
+console.log('You got ' + correct + ' correct and ' + wrong + ' wrong');
 });
+    
      
   // end if else
 } // end match_form
