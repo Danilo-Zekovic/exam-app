@@ -187,6 +187,7 @@
     //jqueryMap.$main.append(fillin_form( jqueryMap, visited.page4 ));
     visited.match = true;
     visited.page2 = true;
+    visited.page3 = true;
 
     hideDiv();
     

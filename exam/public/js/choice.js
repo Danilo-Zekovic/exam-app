@@ -7,11 +7,15 @@
  */
 
 multchoice_form = function( jqueryMap, visited ) {
-  console.log("multtiple_choice" + visited);
+  console.log("multiple_choice" + visited);
   
   //var data = multiple; // set data to JSON data
   
+   var data = JSON.parse(multiple);
 
+   var numOfQuestions = 7;
+   var nums = 1;
+   var count =0;
   // array to keep the corect answers
   //var solutions = [];
 
@@ -22,16 +26,6 @@ multchoice_form = function( jqueryMap, visited ) {
     jqueryMap.$multchoice.show();
   }else{
     jqueryMap.$multchoice.show();
-
-
-
-    
-
-	var numOfQuestions = 7;
-    var nums = 1;
-    var count =0;
-
-  var data = JSON.parse(multiple);
 
  jqueryMap.$multchoice.append('<div class="craig"></div>'); // had to move this outside of for loop to work, not sure why yet, I will look into it more
  //jqueryMap.$choice.append('<div class="num " id="work"></div>');
@@ -66,26 +60,16 @@ for (var i = 0;i < numOfQuestions; i++) {
 
         $('.lab:last').html(choices);
         console.log('    ' + JSON.stringify(qtion.decoys[j]));
-    //
-   count++;
+    
+        count++;
    //$('form > input').each(function(){
     //$(this).next('label').andSelf().wrapAll('<div class="test"/>');
    //});
 
    }
-   
-   	 //$('#num0').wrapAll('<form class="trial"></form>');
-   
-  
-   
-   //$('.craig:last').append('</form>');
-    // ends second for loop
-  
-
+ 
 } // ends first for loop
 /////////////////////button displayed///////////////////////
-
-
 
 var buttonString = '<div class="row">'
 	                 + '<div class="col-xs-12 submit">'
