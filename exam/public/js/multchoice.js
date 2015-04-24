@@ -96,27 +96,36 @@ mult_choice_form = function( jqueryMap, visited ) {
       $('.row:last').append('<div class="col-xs-12 col-md-6"></div>');
       $('.col-md-6:last').append(
         // Bootstrap checkboxes
+        // set name="'+i+'" instead of name="optradio" so only one answer may be selected from each question (got from Craig)
         '<div class="radio">'
-          + '<label><input class="multChoice-ans" id="c1" type="radio" name="optradio" value="">'+choices[i][0]+'</label>'
+          + '<label><input class="multChoice-ans" id="c1'+i+'" type="radio" name="'+i+'" value="">'+choices[i][0]+'</label>'
         + '</div>'
         + '<div class="radio">'
-          + '<label><input class="multChoice-ans" id="c2" type="radio" name="optradio" value="">'+choices[i][1]+'</label>'
+          + '<label><input class="multChoice-ans" id="c2'+i+'" type="radio" name="'+i+'" value="">'+choices[i][1]+'</label>'
         + '</div>'
         + '<div class="radio">'
-          + '<label><input class="multChoice-ans" id="c3" type="radio" name="optradio" value="">'+choices[i][2]+'</label>'
+          + '<label><input class="multChoice-ans" id="c3'+i+'" type="radio" name="'+i+'" value="">'+choices[i][2]+'</label>'
         + '</div>'
         + '<div class="radio">'
-          + '<label><input class="multChoice-ans" id="c4" type="radio" name="optradio" value="">'+choices[i][3]+'</label>'
+          + '<label><input class="multChoice-ans" id="c4'+i+'" type="radio" name="'+i+'" value="">'+choices[i][3]+'</label>'
         + '</div>'
       );
-      
-      $('#c1').val(choices[i][0]);
-      $('#c2').val(choices[i][1]);
-      $('#c3').val(choices[i][2]);
-      $('#c4').val(choices[i][3]);
-      console.log("checking value in first slot " + $('#c1').val());
+
+
+      //$('.col-md-10:last').append('<input type="radio" aria-label="..." class="rad" id="' +count +'" name="'+ i+ '" value="'+choices+'" ><label class="lab"></label><br>');
+
+      // set the values of the radios equal to choices
+      $('#c1'.concat(i)).val(choices[i][0]);
+      $('#c2'.concat(i)).val(choices[i][1]);
+      $('#c3'.concat(i)).val(choices[i][2]);
+      $('#c4'.concat(i)).val(choices[i][3]);
+      console.log("checking value in first slot " + $('#c1'.concat(i)).val() + " i=" + i + " id=" + $('#c1'.concat(i)).attr('id'));
 
     } // end for
+
+
+    // show what's in choices; should be everything
+    console.log("choices: " + choices.toString());
 
 
     // adds the button to the end of the div
@@ -135,47 +144,71 @@ mult_choice_form = function( jqueryMap, visited ) {
 
 
 
+/*** Grading ***/
+
 var gradeMultChoice = function( event ) {
   var solutions = event.data.solutions;
   console.log("Submit Clicked " + solutions.toString());
 
-  var ans = []; // array to store user answers
-  var i = 0;    // to keep the place to store the value in ans array
+  var ans     = [];     // array to store user answers
+  var i       = 0;      // to keep the place to store the value in ans array (0-6)
+  var checked = false;  // flag that helps determine if a question goes unanswered
 
   // move through all the input lists and get the selected value
   $('.multChoice-ans').each(function() {
-    console.log("Hey I am actually in this function!!!");
+    //console.log("Hey I am actually in this function!!!");
 
-    // test all four options for checked (code needs to be optimized)
-    if ($(this).is(':checked') && $(this).attr('id') == 'c1') {
-      console.log("testing if if checked works + " + $(this).attr('id'));
-      ans[i] = $('#c1').val();
+
+    // First Part
+    // test all four options for checked (repeated code needs to be optimized)
+    // if checked, store value in ans[i] and increment i to be used for next index of ans[]
+    // and set checked to true
+    if ($(this).prop('checked') && $(this).attr('id') == 'c1'.concat(i)) {
+      //console.log("this is checked: " + $(this).attr('id'));
+      ans[i] = $('#c1'.concat(i)).val();
       i++;
+      checked = true;
     }
-    else if ($(this).is(':checked') && $(this).attr('id') == 'c2') {
-      console.log("testing if if checked works + " + $(this).attr('id'));
-      ans[i] = $('#c2').val();
+    else if ($(this).prop('checked') && $(this).attr('id') == 'c2'.concat(i)) {
+      //console.log("this is checked: " + $(this).attr('id'));
+      ans[i] = $('#c2'.concat(i)).val();
       i++;
+      checked = true;
     }
-    else if ($(this).is(':checked') && $(this).attr('id') == 'c3') {
-      console.log("testing if if checked works + " + $(this).attr('id'));
-      ans[i] = $('#c3').val();
+    else if ($(this).prop('checked') && $(this).attr('id') == 'c3'.concat(i)) {
+      //console.log("this is checked: " + $(this).attr('id'));
+      ans[i] = $('#c3'.concat(i)).val();
       i++;
+      checked = true;
     }
-    else if ($(this).is(':checked') && $(this).attr('id') == 'c4') {
-      console.log("testing if if checked works + " + $(this).attr('id'));
-      ans[i] = $('#c4').val();
+    else if ($(this).prop('checked') && $(this).attr('id') == 'c4'.concat(i)) {
+      //console.log("this is checked: " + $(this).attr('id'));
+      ans[i] = $('#c4'.concat(i)).val();
       i++;
-    }
-    else {
-      i++;
+      checked = true;
     }
 
-      //ans[i] = $(this).val();
-      //console.log($('#c1').val() + " <===");
+
+    // Second Part
+    // When checking the last possible choice for check,
+    // if checked is false then that means nothing was selected for that question
+    // if checked is true  then get ready to check the next question to see if it
+    // was answered by setting checked back to false
+    if ($(this).attr('id').match(/c4\d/g) && checked == false) {
+      //console.log("nothing checked");
+      ans[i] = "";
+      i++;
+    }
+    else if ($(this).attr('id').match(/c4\d/g) && checked == true) {
+      //console.log("question was answered, reset checked to false");
+      checked = false;
+    }
+
+    //console.log("What is this thing's id? " + $(this).attr('id') + "  Value of i is: " + i + " Value of checked is: " + checked);
   
   });
 
+  // Grade user's answers
   var wrong = 0;
   var correct = 0;
 
