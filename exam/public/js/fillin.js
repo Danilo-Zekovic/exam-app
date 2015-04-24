@@ -36,10 +36,10 @@ fillin_form = function( jqueryMap, visited ) {
       solutions[i] = [];
       // set multivalue answers in array (2D array)
       for (var j = 0; j < data[i].values.length; ++j) {
-        console.log(data[i].values.length);
-        console.log("data[i].values[j] = " + data[i].values[j]);
+        //console.log(data[i].values.length);
+        //console.log("data[i].values[j] = " + data[i].values[j]);
         solutions[i][j] = data[i].values[j];
-        console.log("solutions[i] = " + solutions[i][j]);
+        //console.log("solutions[i] = " + solutions[i][j]);
       }
 
       $("label:last").html( question );
@@ -48,7 +48,7 @@ fillin_form = function( jqueryMap, visited ) {
       $('.row:last').append('<div class="col-xs-12 col-md-6"></div>');
       $('.col-md-6:last').append(
         '<div class="form-group">'
-          + '<label for="answer">Type your answear:</label>'
+          + '<label for="answer">Type your answer:</label>'
 	  // fillin-ans class so that answers could be selected
           + '<input type="text" class="form-control fillin-ans" id="answer">'
         + '</div>'
@@ -65,8 +65,8 @@ fillin_form = function( jqueryMap, visited ) {
 			 + '</div>'
 		       + '</div>';
     jqueryMap.$fillin.append(buttonString);
-    console.log(solutions.toString());
-    console.log(solutions[4][1] + " should be Alan Shepherd");
+    //console.log(solutions.toString());
+    //console.log(solutions[4][1] + " should be Alan Shepherd");
     $('.submit-btn-fillin').click({solutions:solutions},gradeFillin);
   } // end if else
 } // end match_form
@@ -94,7 +94,7 @@ var gradeFillin = function( event ) {
   for (var j = 0; j < solutions.length; ++j){
     // test for all possible solutions in second dimension
     for (var k = 0; k < solutions[j].length; ++k) {
-      console.log(solutions[j][k]);
+      //console.log(solutions[j][k]);
       // found answer
       if (ans[j] == solutions[j][k]){
         prev_correct = correct;
@@ -102,8 +102,8 @@ var gradeFillin = function( event ) {
       } 
       // if the answer is not last possible solution and a correct answer wasn't already found
       else if (k == solutions[j].length - 1 && ans[j] != solutions[j][k] && prev_correct == correct) {
-        console.log(k + "   " +solutions[j].length);
-        console.log("hey dude look here -> " + ans[j] + " =? " + solutions[j][k]);
+        //console.log(k + "   " +solutions[j].length);
+        //console.log("hey dude look here -> " + ans[j] + " =? " + solutions[j][k]);
         wrong++;
       } else {
         continue;

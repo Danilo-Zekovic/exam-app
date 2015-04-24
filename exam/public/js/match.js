@@ -39,11 +39,12 @@ match_form = function( jqueryMap, visited ) {
       $('.col-md-6:last').append(
         '<div class="form-group">'
           + '<label for="sel1">Select your answer:</label>'
-	  + '<select class="form-control match-ans" id="sel1">'
-	    + '<option></option>'
-	  + '</select>'
+	        + '<select class="form-control match-ans" id="sel1">'
+	          + '<option></option>'
+	        + '</select>'
         + '</div>'
       );
+
       // to keep track of elements already selected
       var selected = [];
       for (var k = 0; k < data.length; ++k) {
@@ -51,26 +52,27 @@ match_form = function( jqueryMap, visited ) {
       }
       // loop until all the elements have been added to the list 
       while (isAllSelected(selected)){
-	// get the random number between 0 and the number of elements
-	var num = Math.floor((Math.random() * data.length));
-	// check if the number has been selected befor if not than add it
+	      // get the random number between 0 and the number of elements
+	      var num = Math.floor((Math.random() * data.length));
+	      // check if the number has been selected befor if not than add it
         if(selected[num] != true){
-	  $('select:last').append('<option></option>');
-	  var answer = data[num].value;
-	  $('option:last').html(answer);
-	  selected[num] = true;
-	} // end if
+	        $('select:last').append('<option></option>');
+	        var answer = data[num].value;
+	        $('option:last').html(answer);
+	        selected[num] = true;
+	      } // end if
       } // end while
     } // end for
 
     // adds the button to the end of the div
     // it will check the answers 
     // and display the number of corect and missed questions
-    var buttonString = '<div class="row">'
-	                 + '<div class="col-xs-12 submit">'
-			   + '<button type="button" class="btn btn-primary btn-block submit-btn">Submit</button>'
-			 + '</div>'
-		       + '</div>';
+    var buttonString = 
+      '<div class="row">'
+	      + '<div class="col-xs-12 submit">'
+			    + '<button type="button" class="btn btn-primary btn-block submit-btn">Submit</button>'
+			  + '</div>'
+		  + '</div>';
     jqueryMap.$match.append(buttonString);
     console.log(solutions.toString());
     $('.submit-btn').click({solutions:solutions},grade);
