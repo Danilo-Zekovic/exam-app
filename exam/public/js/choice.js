@@ -7,124 +7,125 @@
  */
 
 multchoice_form = function( jqueryMap, visited ) {
-  console.log("multiple_choice" + visited);
+  //console.log("multiple_choice" + visited);
   
-  //var data = multiple; // set data to JSON data
+  var data = JSON.parse(multiple);
+
+  var numOfQuestions = 7;
+  var nums = 1;
+  var count =0;
+  var answers = [];
+  var userAns = [];
   
-   var data = JSON.parse(multiple);
-
-   var numOfQuestions = 7;
-   var nums = 1;
-   var count =0;
-   var answers = [];
-  // array to keep the corect answers
-  //var solutions = [];
-
-
   // if the page was visited just show it again
   // else create the content of the page
   if (visited){
     jqueryMap.$multchoice.show();
-  }else{
+  }else {
     jqueryMap.$multchoice.show();
 
- jqueryMap.$multchoice.append('<div class="row"></div>'); // had to move this outside of for loop to work, not sure why yet, I will look into it more
- //jqueryMap.$choice.append('<div class="num " id="work"></div>');
+    jqueryMap.$multchoice.append('<div class="row"></div>'); // had to move this outside of for loop to work, not sure why yet, I will look into it more
+ 
  //////////////////////////////questions displayed//////////////////////////////
  //////////////////////////////////////////////////////////////////////////////
-for (var i = 0;i < numOfQuestions; i++) {
-//jqueryMap.$multchoice.append('<div class="craig"></div>');
-  var qtion = data[i];
-  var question = qtion.text;
-  answers[i] = qtion.answer;
-  console.log('answer for: '+ answers[i] );
-     console.log(JSON.stringify(question)); 
+    for (var i = 0;i < numOfQuestions; i++) {
+      var qtion = data[i];
+      var question = qtion.text;
+      answers[i] = qtion.answer;
+      //console.log('answer for: '+ answers[i]);
+      //console.log(JSON.stringify(question)); 
     
 
-     $('.row:last').append('<br><br><div class="col-xs-12 col-md-10"></div>'); 
-     $('.col-md-10:last').append('<label class="label"></label>'); //append it to collumn
-     $('.label:last').html(nums + ') ' + question);
+      $('.row:last').append('<br><br><div class="col-xs-12 col-md-10"></div>'); 
+      $('.col-md-10:last').append('<label class="label"></label>'); //append it to collumn
+      $('.label:last').html(nums + ') ' + question);
      
-     //console.log('\n the answer is ' + JSON.stringify(ques.answer) + '\n'); 
-
-    nums++;
-  
-   
+      nums++;
     //////////////////////////////choices displayed///////////////////////
     //////////////////////////////////////////////////////////////////////
-   //$('.craig').append('<form>');
-   for (var j = 0;j < 4; j++) {
+        for (var j = 0;j < 4; j++) {
    	
-   	var choices = qtion.decoys[j];
-   	$('.row:last').append('<div class="col-xs-12 col-md-10"></div>');
-      $('.col-md-10:last').append('<input type="radio" aria-label="..." class="rad" id="' +count +'" name="'+ i+ '" value="'+choices+'" ><label class="lab"></label><br>');
-       $('.lab:last').html(choices);
+   	      var choices = qtion.decoys[j];
+   	      $('.row:last').append('<div class="col-xs-12 col-md-10"></div>');
+          $('.col-md-10:last').append('<input type="radio" aria-label="..." class="rad" id="' +count +'" name="'+ i+ '" value="'+choices+'" ><label class="lab"></label><br>');
+          $('.lab:last').html(choices);
    
-        count++;
+          count++;
     
-   }
+        } // end of second for loop
  
-} // ends first for loop
-/////////////////////button displayed///////////////////////
-  //console.log('selected: ' + )
-  /*$('.rad').on('change', function() {
-    alert($("input[name='num0']:checked", '.rad').());
-  });
-*/
-var userAns = [];
-$(function() {
-
-  $('input:radio').change(function () {
-    var temp = $(this).attr('name');
-    if($(this).prop('checked') == true) {
-    console.log($(this).val());
-    userAns[temp] = $(this).val();
-    console.log(userAns); 
-    }
-  });
-});
-
-
+    } // ends first for loop
 
   
-var buttonString = '<div class="row">'
-	                 + '<div class="col-xs-12 submit">'
-			   + '<button type="button" class="btn btn-primary btn-block submit-btn-choice">Submit</button>'
+    $(function() {
+      $('input:radio').change(function () {
+        var temp = $(this).attr('name');
+        if($(this).prop('checked') == true) {
+          //console.log($(this).val());
+          userAns[temp] = $(this).val();
+          //console.log(userAns); 
+        }
+      });
+    });
+
+
+
+  /////////////////////button displayed///////////////////////
+///////////////////////////////////////////////////////////
+    var buttonString = '<div class="row">'
+	     + '<div class="col-xs-12 submit">'
+			 + '<button type="button" class="btn btn-primary btn-block submit-btn-choice">Submit</button>'
 			 + '</div>'
-		       + '</div>';
+		   + '</div>';
 
-var correct = 0;
-var wrong = 0;
-    jqueryMap.$multchoice.append(buttonString);
-    console.log(answers.toString());
+    var correct = 0;
+    var wrong = 0;
     
+    jqueryMap.$multchoice.append(buttonString);
+    //console.log(answers.toString());
+    
+    ////////////////////////////////////////////
+    //////Once button is clicked///////////////
     $('.submit-btn-choice').click(function() {
-      
-          for( var i =0; i < numOfQuestions; i++) {
-    if(userAns[i] === answers[i]) {
-      correct++;
+      var answeredAll = true;
+      for( var i =0; i < numOfQuestions; i++) {
+        if(userAns[i] === answers[i]) {
+          correct++;
+        }
+        else if(userAns[i] == null) {
+           answeredAll = false;
+           alert('You did not answer every question');
+           correct = 0;
+           wrong = 0;
+          
+         
+        }
+        else {
+          wrong++;
+      }
     }
-    else {
-      wrong++;
-    }
-}
-console.log('You got ' + correct + ' correct and ' + wrong + ' wrong');
+    
 
-    $('.row').empty();
-  $('.row').append(
-     '<div class="row">'
-      + '<div class="col-xs-12">'
-        + '<label class="choice"></label>'
-      + '</div>'
-    + '</div>'
-  );
-  var str = 'Correct: ' + correct + ', wrong: ' + wrong;
-  console.log(str);
-  $('.choice:last').html(str);
+    //console.log('You got ' + correct + ' correct and ' + wrong + ' wrong');
+      if(answeredAll === true) {
+        $('.row').empty();
+        $('.row').append(
+         '<div class="row">'
+          + '<div class="col-xs-12">'
+          + '<label class="choice"></label>'
+          + '</div>'
+          + '</div>'
+        );
+        var str = 'Correct: ' + correct + ', wrong: ' + wrong;
+        //console.log(str);
+        $('.choice:last').html(str);
+      }
     }); 
-  // end if else
-} // end match_form
-}
+  
+
+  }   // end of else statement
+
+}   // end of choice form
 
 
 
