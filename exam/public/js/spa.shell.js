@@ -124,6 +124,7 @@
     visited.page2 = true; // page visited
   }
 
+  // switch to page3, multChoice
   pageThree = function ( event ) {
     console.log("Page3 clicked " + visited.page3);
     console.log(document.location.hash);
@@ -135,6 +136,7 @@
     visited.page3 = true; // page visited
   }
 
+  // switch to page4, true false
   pageFour = function ( event ) {
     console.log("Page4 clicked " + visited.page4);
     console.log(document.location.hash);
