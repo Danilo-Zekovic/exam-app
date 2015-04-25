@@ -33,13 +33,13 @@ true_false_form = function( jqueryMap, visited ) {
       // create and add answears
       $('.row:last').append('<div class="col-xs-12 col-md-6"></div>');
       $('.col-md-6:last').append(
-	'<div class="form-group">'
-        + '<label for="sel1">Select your answer:</label>'
-        + '<select class="form-control tf-ans" id="sel1">'
-          + '<option></option>'
-	  + '<option>True</option>'
-	  + '<option>False</option>'
-        + '</select>'
+	      '<div class="form-group">'
+          + '<label for="sel1">Select your answer:</label>'
+          + '<select class="form-control tf-ans" id="sel1">'
+            + '<option></option>'
+	          + '<option>True</option>'
+	          + '<option>False</option>'
+          + '</select>'
         + '</div>'
       );
     }//end for
