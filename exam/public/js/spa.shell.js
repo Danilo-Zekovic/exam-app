@@ -143,7 +143,7 @@
     hideDiv();  // hide curent content of the main div
 
     // add requested page content to the main div
-    // jqueryMap.$main.append(tf_form( jqueryMap, visited.page4 ));
+    jqueryMap.$main.append(true_false_form( jqueryMap, visited.page4 ));
 
     visited.page4 = true; // page visited
   }
@@ -185,10 +185,12 @@
     jqueryMap.$main.append(match_form( jqueryMap, visited.match ));
     jqueryMap.$main.append(fillin_form( jqueryMap, visited.page2 ));
     jqueryMap.$main.append(mult_choice_form( jqueryMap, visited.page3 ));
-    //jqueryMap.$main.append(fillin_form( jqueryMap, visited.page4 ));
+    jqueryMap.$main.append(true_false_form( jqueryMap, visited.page4 ));
+    
     visited.match = true;
     visited.page2 = true;
     visited.page3 = true;
+    visited.page4 = true;
 
     hideDiv();
     
