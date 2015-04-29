@@ -67,7 +67,7 @@
   // hide any div in $main
   hideDiv = function () {
     jqueryMap.$match.hide();
-    jqueryMap.$multiC.hide();
+    jqueryMap.$multchoice.hide();
     jqueryMap.$fillin.hide();
     jqueryMap.$tf.hide();
   }
@@ -88,7 +88,7 @@
       $main          : $container.find('.main-container'),
       $match         : $container.find('.match'),
       $fillin        : $container.find('.fillin'),
-      $multiC        : $container.find('.multiple-choice'),
+      $multchoice    : $container.find('.multiple-choice'),
       $tf            : $container.find('.true-false'),
       $nav           : $container.find('.nav-navbar')
     }
@@ -130,7 +130,7 @@
     hideDiv();   // hide curent content of the main div
 
     // add requested page content to the main div TODO
-    //jqueryMap.$main.append(mult_choice_form( jqueryMap, visited.page3 ));
+    jqueryMap.$main.append(multchoice_form( jqueryMap, visited.page3 ));
 
     visited.page3 = true; // page visited
   }
@@ -185,8 +185,11 @@
     jqueryMap.$main.append(fillin_form( jqueryMap, visited.page2 ));
     //jqueryMap.$main.append(fillin_form( jqueryMap, visited.page3 ));
     jqueryMap.$main.append(true_false_form( jqueryMap, visited.page4 ));
+    jqueryMap.$main.append(multchoice_form( jqueryMap, visited.page3 ));
+    //jqueryMap.$main.append(fillin_form( jqueryMap, visited.page4 ));
     visited.match = true;
     visited.page2 = true;
+    visited.page3 = true;
 
     visited.page4 = true;
 
