@@ -32,11 +32,11 @@
 	    + '</div>'
 	    + '<div id="navbar" class="navbar-collapse collapse" aria-expanded="false" styleheight: 1px;">'
 	      + '<ul class="nav navbar-nav">'
-	        + '<li class="active"><a href="#">Home</a></li>'
-	        + '<li class="matchbtn" ><a href="#/match">Match</a></li>'
-	        + '<li><a class="page2" href="#/page2">Nathan</a></li>'
-	        + '<li><a class="page3" href="#/page3">Craig</a></li>'
-		+ '<li><a class="page4" href="#/page4">Ryan</a></li>'
+	          + '<li class="home"><a href="#" class="active">Home</a></li>'
+	          + '<li class="matchbtn" ><a href="#/match" class="inactive">Match</a></li>'
+	          + '<li><a class="page2" href="#/page2" >Nathan</a></li>'
+	          + '<li><a class="page3" href="#/page3" >Craig</a></li>'
+		        + '<li><a class="page4" href="#/page4" >Ryan</a></li>'
 	      + '</ul>'
 	    + '</div>'
 	  + '</div>'
@@ -63,6 +63,7 @@
   //------------------END MODULE SCOPE VAR----------------
 
   //------------------BEGIN UTILITY METHODS---------------
+  
   
   // hide any div in $main
   hideDiv = function () {
@@ -130,9 +131,10 @@
     hideDiv();   // hide curent content of the main div
 
     // add requested page content to the main div TODO
-    jqueryMap.$main.append(multchoice_form( jqueryMap, visited.page3 ));
+    jqueryMap.$main.append(multchoice_form( jqueryMap, visited.page3));
 
     visited.page3 = true; // page visited
+
   }
 
   pageFour = function ( event ) {
@@ -184,8 +186,8 @@
     jqueryMap.$main.append(match_form( jqueryMap, visited.match ));
     jqueryMap.$main.append(fillin_form( jqueryMap, visited.page2 ));
     //jqueryMap.$main.append(fillin_form( jqueryMap, visited.page3 ));
+    jqueryMap.$main.append(multchoice_form( jqueryMap, visited.page3));
     jqueryMap.$main.append(true_false_form( jqueryMap, visited.page4 ));
-    jqueryMap.$main.append(multchoice_form( jqueryMap, visited.page3 ));
     //jqueryMap.$main.append(fillin_form( jqueryMap, visited.page4 ));
     visited.match = true;
     visited.page2 = true;
