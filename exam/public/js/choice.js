@@ -68,8 +68,6 @@ multchoice_form = function( jqueryMap, visited ) {
       });
     });
 
-
-
   /////////////////////button displayed///////////////////////
 ///////////////////////////////////////////////////////////
     var buttonString = '<div class="row">'
@@ -80,9 +78,10 @@ multchoice_form = function( jqueryMap, visited ) {
 
     var correct = 0;
     var wrong = 0;
-    
     jqueryMap.$multchoice.append(buttonString);
     //console.log(answers.toString());
+     //ends else
+
     
     ////////////////////////////////////////////
     //////Once button is clicked///////////////
@@ -108,24 +107,25 @@ multchoice_form = function( jqueryMap, visited ) {
 
     //console.log('You got ' + correct + ' correct and ' + wrong + ' wrong');
       if(answeredAll === true) {
-        $('.row').empty();
-        $('.row').append(
+        $('.multiple-choice').empty();
+        $('.multiple-choice').append(
          '<div class="row">'
           + '<div class="col-xs-12">'
           + '<label class="choice"></label>'
           + '</div>'
           + '</div>'
         );
-        var str = 'Correct: ' + correct + ', wrong: ' + wrong;
+        var str1 = 'Correct: ' + correct + ', wrong: ' + wrong;
         //console.log(str);
-        $('.choice:last').html(str);
+        $('.choice:last').html(str1);
       }
     }); 
   
+}
+} // ends form
+     // end of else statement
 
-  }   // end of else statement
-
-}   // end of choice form
+   // end of choice form
 
 
 
