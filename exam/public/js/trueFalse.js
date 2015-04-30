@@ -37,8 +37,8 @@ true_false_form = function( jqueryMap, visited ) {
         + '<label for="sel1">Select your answer:</label>'
         + '<select class="form-control tf-ans" id="sel1">'
           + '<option></option>'
-	  + '<option>True</option>'
-	  + '<option>False</option>'
+	  + '<option>true</option>'
+	  + '<option>false</option>'
         + '</select>'
         + '</div>'
       );
