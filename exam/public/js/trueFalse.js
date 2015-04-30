@@ -49,17 +49,17 @@ true_false_form = function( jqueryMap, visited ) {
     // and display the number of corect and missed questions
     var buttonString = '<div class="row">'
     + '<div class="col-xs-12 submit">'
-    + '<button type="button" class="btn btn-primary btn-block submit-btn">Submit</button>'
+    + '<button type="button" class="btn btn-primary btn-block submit-btn-tf">Submit</button>'
     + '</div>'
     + '</div>';
     jqueryMap.$tf.append(buttonString);
     console.log(solutions.toString());
-    $('.submit-btn').click({solutions:solutions},grade);
+    $('.submit-btn-tf').click({solutions:solutions},gradeTf);
   } // end if else
 } // end truefalse_for
 
 
-var grade = function( event ) {
+var gradeTf = function( event ) {
   var solutions = event.data.solutions;
   console.log("Submit Clicked " + solutions.toString());
   var ans = []; // array to store user answer
