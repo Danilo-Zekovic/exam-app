@@ -23,7 +23,7 @@
       + 'You Shall Not Pass'
     + '</h1>'
   + '</div>'
-  + '<nav class="navbar navbar-inverse">'
+  + '<nav class="navbar navbar-inverse navbars">'
     + '<div class="container navb" id="top-navbar">'
       + '<div class="navbar-header">'
         + '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">'

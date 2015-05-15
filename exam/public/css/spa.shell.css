@@ -49,6 +49,10 @@ p {
   border-bottom: 4px solid #222;
   left : 0;
   right : 0;
+
+}
+.navbars{
+  border-radius: 0 0 0 0;
 }
 
 .navb ul { 
@@ -97,8 +101,6 @@ p {
   /* this will adjust body top margin to prevent content jumping when nav gets fix  */    
   margin-top: 50px;
 }
-
-
 
 @media (max-width:768px) {
   .container:not(#top-navbar) {
