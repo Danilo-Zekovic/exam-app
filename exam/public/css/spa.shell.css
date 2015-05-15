@@ -20,6 +20,84 @@ li:hover {
   background-color : #080808;
 }
 
+h1 {
+  background-color: #333;
+  color: #222;
+  font: bold 80px "arial";
+  height: 200px;
+  padding: 25px;
+  text-align: center;
+  text-shadow: 0 1px 1px #4d4d4d;
+}
+
+p {
+  margin-top: 25px;
+}
+
+.nav-container {
+    
+  background-color: #f86d5a;
+}
+
+.navb {   
+  height: 46px;
+  border-bottom: 4px solid #222;
+  left : 0;
+  right : 0;
+}
+
+.navb ul { 
+  list-style: none;
+}
+
+.navb ul li {
+  float: left; 
+  line-height: 46px;
+  border-right: 2px solid #f56956;  
+  border-left: 2px solid #f9897a;
+}
+  
+.navb ul li:first-child {
+  border-left: none;
+}
+
+.navb ul li:last-child {
+  border-right: none;
+}
+
+.navb ul li a {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  font-size: 1.1em;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+  
+.navb ul li a:hover { 
+  background-color: #222;
+  color: #f86d5a;
+}
+
+.fix-nav {
+  /* this make our menu fixed top */    
+  z-index: 9999;  
+  position: fixed;
+  left: 0;
+  top: 0;    
+  width: 100%;
+}
+  
+.fix-body {
+  /* this will adjust body top margin to prevent content jumping when nav gets fix  */    
+  margin-top: 50px;
+}
+
+.navbar-fixed-top {
+  position : none;
+}
+
+
 @media (max-width:768px) {
   .container:not(#top-navbar) {
     position : absolute;
@@ -39,3 +117,4 @@ li:hover {
 
   }
 }
+
