@@ -61,10 +61,10 @@ fillin_form = function( jqueryMap, visited ) {
     // and display the number of corect and missed questions
     var buttonString = 
       '<div class="row">'
-	      + '<div class="col-xs-12 submit">'
-			    + '<button type="button" class="btn btn-primary btn-block submit-btn-fillin">Submit</button>'
-			  + '</div>'
-		  + '</div>';
+        + '<div class="col-xs-12 submit">'
+          + '<button type="button" class="btn btn-primary btn-block submit-btn-fillin">Submit</button>'
+        + '</div>'
+      + '</div>';
     jqueryMap.$fillin.append(buttonString);
     //console.log(solutions.toString());
     //console.log(solutions[4][1] + " should be Alan Shepherd");
