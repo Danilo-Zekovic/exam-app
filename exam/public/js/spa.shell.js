@@ -18,35 +18,40 @@
   var
     configMap = {
       main_html : String()
-	+ '<nav class="navbar navbar-inverse navbar-fixed-top">'
-	  + '<div class="container" id="top-navbar">'
-	    + '<div class="navbar-header">'
-	      + '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">'
-	        + '<span class="sr-only">Toggle navigation</span>'
-	        + '<span class="icon-bar"></span>'
-	        + '<span class="icon-bar"></span>'
-	        + '<span class="icon-bar"></span>'
-	        + '<span class="icon-bar"></span>'
-	      + '</button>'
-	      + '<a class="navbar-brand" href="#">ExamApp</a>'
-	    + '</div>'
-	    + '<div id="navbar" class="navbar-collapse collapse" aria-expanded="false" styleheight: 1px;">'
-	      + '<ul class="nav navbar-nav">'
-	          + '<li class="home"><a href="#" class="active">Home</a></li>'
-	          + '<li class="matchbtn" ><a href="#/match" class="inactive">Match</a></li>'
-	          + '<li><a class="page2" href="#/page2" >Nathan</a></li>'
-	          + '<li><a class="page3" href="#/page3" >Craig</a></li>'
-		        + '<li><a class="page4" href="#/page4" >Ryan</a></li>'
-	      + '</ul>'
-	    + '</div>'
-	  + '</div>'
-	+ '</nav>'
-	+ '<div class="container main-container">'
-	  + '<div class="container match"></div>'
-	  + '<div class="container fillin"></div>'
-	  + '<div class="container multiple-choice"></div>'
-	  + '<div class="container true-false"></div>'
-	+ '</div>'
+  + '<div>'
+    + '<h1>'
+      + 'Fellow Tuts'
+    + '</h1>'
+  + '</div>'
+  + '<nav class="navbar navbar-inverse ">'
+    + '<div class="container navb" id="top-navbar">'
+      + '<div class="navbar-header">'
+        + '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">'
+          + '<span class="sr-only">Toggle navigation</span>'
+          + '<span class="icon-bar"></span>'
+          + '<span class="icon-bar"></span>'
+          + '<span class="icon-bar"></span>'
+          + '<span class="icon-bar"></span>'
+        + '</button>'
+        + '<a class="navbar-brand" href="#">ExamApp</a>'
+      + '</div>'
+      + '<div id="navbar" class="navbar-collapse collapse" aria-expanded="false" styleheight: 1px;">'
+        + '<ul class="nav navbar-nav">'
+            + '<li class="home"><a href="#" class="active">Home</a></li>'
+            + '<li class="matchbtn" ><a href="#/match" class="inactive">Match</a></li>'
+            + '<li><a class="page2" href="#/page2" >Nathan</a></li>'
+            + '<li><a class="page3" href="#/page3" >Craig</a></li>'
+            + '<li><a class="page4" href="#/page4" >Ryan</a></li>'
+        + '</ul>'
+      + '</div>'
+    + '</div>'
+  + '</nav>'
+  + '<div class="container main-container">'
+    + '<div class="container match"></div>'
+    + '<div class="container fillin"></div>'
+    + '<div class="container multiple-choice"></div>'
+    + '<div class="container true-false"></div>'
+  + '</div>'
     },
     stateMap = { $container : null },
     jqueryMap = {},
@@ -157,19 +162,19 @@
 
       case 'match':
         console.log("match clicked");
-	break;
+  break;
       case 'page1': 
-	console.log("page1");
-	break;
+  console.log("page1");
+  break;
       case 'page2':
-	console.log("page2");
-	break;
+  console.log("page2");
+  break;
       case 'page3':
-	console.log("page3");
-	break;
+  console.log("page3");
+  break;
       case 'page4':
-	console.log("page4");
-	break;
+  console.log("page4");
+  break;
     }
     return false;
   }; // end onTapList
@@ -181,6 +186,18 @@
     stateMap.$container = $container;
     $container.html( configMap.main_html );
     setJqueryMap();
+
+    var navb = $('.navb');
+    var pos = navb.offset().top;
+      console.log(pos + " offset value");
+      
+    $(window).scroll(function () {
+      var fix = ($(this).scrollTop() > pos) ? true : false;
+      $('nav').toggleClass("navbar-fixed-top", fix);
+      navb.toggleClass("fix-nav", fix);
+      $('body').toggleClass("fix-body", fix);
+    });
+    
 
 
     jqueryMap.$main.append(match_form( jqueryMap, visited.match ));
@@ -213,3 +230,4 @@
   //------------------END PUBLIC METHODS------------------
 
 }());
+
