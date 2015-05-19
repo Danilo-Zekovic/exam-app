@@ -58,7 +58,7 @@
       page3 : false,
       page4 : false
     },
-    onTapList, hideDiv,
+    hideDiv,
     setJqueryMap, initModule;
   //------------------END MODULE SCOPE VAR----------------
 
@@ -148,31 +148,6 @@
     visited.page4 = true; // page visited
   }
 
-  onTapList = function ( event ) {
-    // React to taps on menu in nav div
-    var menu_item  = $(this).data("id");
-    console.log('Tapped on ' + menu_item);
-    console.log("click");
-    switch(menu_item) {
-
-      case 'match':
-        console.log("match clicked");
-	break;
-      case 'page1': 
-	console.log("page1");
-	break;
-      case 'page2':
-	console.log("page2");
-	break;
-      case 'page3':
-	console.log("page3");
-	break;
-      case 'page4':
-	console.log("page4");
-	break;
-    }
-    return false;
-  }; // end onTapList
   //------------------END EVENT HANDLERS------------------
   
   //------------------BEGIN PUBLIC METHODS----------------
@@ -197,7 +172,7 @@
 
     hideDiv();
     
-    jqueryMap.$nav.bind( 'click', onTapList   ); 
+   
     jqueryMap.$mbt.click(pageOne);
     jqueryMap.$p2bt.click(pageTwo);
     jqueryMap.$p3bt.click(pageThree);
