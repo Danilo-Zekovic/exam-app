@@ -153,34 +153,32 @@
   //------------------BEGIN PUBLIC METHODS----------------
   
   initModule = function ( $container ) {
+    
     stateMap.$container = $container;
     $container.html( configMap.main_html );
     setJqueryMap();
 
-
+    // load all the div's when the page is accesed 
     jqueryMap.$main.append(match_form( jqueryMap, visited.match ));
     jqueryMap.$main.append(fillin_form( jqueryMap, visited.page2 ));
-    //jqueryMap.$main.append(fillin_form( jqueryMap, visited.page3 ));
     jqueryMap.$main.append(multchoice_form( jqueryMap, visited.page3));
     jqueryMap.$main.append(true_false_form( jqueryMap, visited.page4 ));
-    //jqueryMap.$main.append(fillin_form( jqueryMap, visited.page4 ));
+
+    // when loaded all of the pages were visited, so set visited to true for each of the pages
     visited.match = true;
     visited.page2 = true;
     visited.page3 = true;
-
     visited.page4 = true;
 
+    // after div's are created hide them from the viewer
     hideDiv();
     
-   
+    // click event
     jqueryMap.$mbt.click(pageOne);
     jqueryMap.$p2bt.click(pageTwo);
     jqueryMap.$p3bt.click(pageThree);
     jqueryMap.$p4bt.click(pageFour);
 
-
-    // trying to make routing work
-    //jqueryMap.$menu.bind( 'click', onTapList );
   };
   
 
