@@ -3,6 +3,14 @@
  * Your CSS
  */
 
+nav {
+  border-radius: 0px;
+}
+
+.main-container {
+  margin-top: 14px;
+}
+
 .container:not(#top-navbar) {
   position : relative;  
   background-color : orange;
